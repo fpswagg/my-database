@@ -4,12 +4,21 @@
   "description": "A database package for fpswagg projects.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate": "npx prisma generate",
+    "postinstall": "npm run generate"
   },
   "keywords": [],
   "author": "fpswagg",
   "license": "UNLICENSED",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
+  },
+  "git repository": "https://github.com/fpswagg/my-database.git",
+  "peerDependencies": {
+    "@prisma/client": "5>="
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.8.2",
+    "prisma": "^6.8.2"
   }
 }
