@@ -1,0 +1,15 @@
+{
+  "name": "@fpswagg/my-database",
+  "version": "1.0.0",
+  "description": "A database package for fpswagg projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "fpswagg",
+  "license": "UNLICENSED",
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
