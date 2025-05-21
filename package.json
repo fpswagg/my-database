@@ -1,6 +1,6 @@
 {
   "name": "@fpswagg/my-database",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A database package for fpswagg projects.",
   "main": "index.js",
   "scripts": {
