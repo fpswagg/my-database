@@ -1,11 +1,44 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./src"
+  output   = "../src"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  partner
+  client
+}
+
+model UserMetadata {
+  uid  String   @id
+  role UserRole @default(client)
+  data Json
+}
+
+model Service {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String   @default("")
+  hasDemo      Boolean  @default(true)
+  price        Int
+  other_prices Int[]    @default([])
+  metadata     Json     @default("{}")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  uid       String
+  comment   String
+  rating    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Scheduler {

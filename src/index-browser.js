@@ -120,6 +120,33 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserMetadataScalarFieldEnum = {
+  uid: 'uid',
+  role: 'role',
+  data: 'data'
+};
+
+exports.Prisma.ServiceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  hasDemo: 'hasDemo',
+  price: 'price',
+  other_prices: 'other_prices',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TestimonialScalarFieldEnum = {
+  id: 'id',
+  uid: 'uid',
+  comment: 'comment',
+  rating: 'rating',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SchedulerScalarFieldEnum = {
   id: 'id',
   detailedName: 'detailedName',
@@ -208,9 +235,16 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.UserRole = exports.$Enums.UserRole = {
+  admin: 'admin',
+  partner: 'partner',
+  client: 'client'
+};
 
 exports.Prisma.ModelName = {
+  UserMetadata: 'UserMetadata',
+  Service: 'Service',
+  Testimonial: 'Testimonial',
   Scheduler: 'Scheduler',
   Schedule: 'Schedule',
   Meal: 'Meal',
