@@ -236,7 +236,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\LENOVO\\Desktop\\My Folder\\My Workspaces\\fpswagg\\my-database\\src",
+      "value": "c:\\Users\\LENOVO\\Desktop\\My Folder\\My Workspaces\\fpswagg\\my-database\\src",
       "fromEnvVar": null
     },
     "config": {
@@ -250,7 +250,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\LENOVO\\Desktop\\My Folder\\My Workspaces\\fpswagg\\my-database\\prisma\\schema.prisma",
+    "sourceFilePath": "c:\\Users\\LENOVO\\Desktop\\My Folder\\My Workspaces\\fpswagg\\my-database\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -264,6 +264,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
