@@ -29,7 +29,7 @@ model Service {
   other_prices Int[]    @default([])
   metadata     Json     @default("{}")
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime @default(now()) @updatedAt
 }
 
 model Testimonial {
@@ -38,7 +38,7 @@ model Testimonial {
   comment   String
   rating    Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Scheduler {
