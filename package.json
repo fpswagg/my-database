@@ -1,11 +1,11 @@
 {
   "name": "@fpswagg/my-database",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A database package for fpswagg projects.",
   "main": "index.js",
   "scripts": {
-    "generate": "npx prisma generate",
-    "postinstall": "npm run generate"
+    "build": "tsc",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "fpswagg",
@@ -15,13 +15,11 @@
   },
   "git repository": "https://github.com/fpswagg/my-database.git",
   "peerDependencies": {
-    "@prisma/client": ">=6",
-    "prisma": ">=6"
+    "@prisma/client": "^6.8.2"
   },
   "devDependencies": {
-    "@prisma/client": "^6.8.2",
-    "@types/node": "^22.15.21",
     "prisma": "^6.8.2",
+    "@types/node": "^22.15.21",
     "typescript": "^5.8.3"
   }
 }

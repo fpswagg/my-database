@@ -1,5 +1,5 @@
 import path from 'path';
-import db from './database';
+import db from './prisma';
 
 import {
     UserMetadata,

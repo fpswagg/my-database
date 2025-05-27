@@ -77,7 +77,7 @@ exports.anyfy = anyfy;
 exports.chance = chance;
 exports.getFileNameFromURL = getFileNameFromURL;
 const path_1 = __importDefault(require("path"));
-const database_1 = __importDefault(require("./database"));
+const prisma_1 = __importDefault(require("./prisma"));
 // UserMetadata converters
 function turnUserMetadataFromDB(data) {
     return (data && Object.assign(Object.assign({}, data), { data: typeof data.data === 'object' && data.data !== null
@@ -93,20 +93,20 @@ function turnServiceFromDB(data) {
 // UserMetadata CRUD
 function createUserMetadata(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.userMetadata.create({
+        return yield prisma_1.default.userMetadata.create({
             data: user,
         });
     });
 }
 function getUserMetadata(uid) {
     return __awaiter(this, void 0, void 0, function* () {
-        const data = yield database_1.default.userMetadata.findUnique({ where: { uid } });
+        const data = yield prisma_1.default.userMetadata.findUnique({ where: { uid } });
         return turnUserMetadataFromDB(data);
     });
 }
 function updateUserMetadata(uid, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        const updated = yield database_1.default.userMetadata.update({
+        const updated = yield prisma_1.default.userMetadata.update({
             where: { uid },
             data,
         });
@@ -115,13 +115,13 @@ function updateUserMetadata(uid, data) {
 }
 function deleteUserMetadata(uid) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.userMetadata.delete({ where: { uid } });
+        return yield prisma_1.default.userMetadata.delete({ where: { uid } });
     });
 }
 // Service CRUD
 function createService(service) {
     return __awaiter(this, void 0, void 0, function* () {
-        const created = yield database_1.default.service.create({
+        const created = yield prisma_1.default.service.create({
             data: service,
         });
         return turnServiceFromDB(created);
@@ -129,19 +129,19 @@ function createService(service) {
 }
 function getService(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const data = yield database_1.default.service.findUnique({ where: { id } });
+        const data = yield prisma_1.default.service.findUnique({ where: { id } });
         return turnServiceFromDB(data);
     });
 }
 function getServices() {
     return __awaiter(this, void 0, void 0, function* () {
-        const data = yield database_1.default.service.findMany();
+        const data = yield prisma_1.default.service.findMany();
         return data.map(turnServiceFromDB).filter(Boolean);
     });
 }
 function updateService(id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        const updated = yield database_1.default.service.update({
+        const updated = yield prisma_1.default.service.update({
             where: { id },
             data,
         });
@@ -150,30 +150,30 @@ function updateService(id, data) {
 }
 function deleteService(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.service.delete({ where: { id } });
+        return yield prisma_1.default.service.delete({ where: { id } });
     });
 }
 // Testimonial CRUD
 function createTestimonial(testimonial) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.testimonial.create({
+        return yield prisma_1.default.testimonial.create({
             data: testimonial,
         });
     });
 }
 function getTestimonial(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.testimonial.findUnique({ where: { id } });
+        return yield prisma_1.default.testimonial.findUnique({ where: { id } });
     });
 }
 function getTestimonials() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.testimonial.findMany();
+        return yield prisma_1.default.testimonial.findMany();
     });
 }
 function updateTestimonial(id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.testimonial.update({
+        return yield prisma_1.default.testimonial.update({
             where: { id },
             data,
         });
@@ -181,7 +181,7 @@ function updateTestimonial(id, data) {
 }
 function deleteTestimonial(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.testimonial.delete({ where: { id } });
+        return yield prisma_1.default.testimonial.delete({ where: { id } });
     });
 }
 function turnRecordFromDB(data) {
@@ -193,7 +193,7 @@ function turnPostFromDB(data) {
 }
 function createNumber(numberRecord) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberRecord.create({
+        return yield prisma_1.default.numberRecord.create({
             data: numberRecord,
             include: { posts: true },
         });
@@ -201,7 +201,7 @@ function createNumber(numberRecord) {
 }
 function getNumber(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberRecord.findUnique({
+        return yield prisma_1.default.numberRecord.findUnique({
             where: { id },
             include: { posts: true },
         });
@@ -209,7 +209,7 @@ function getNumber(id) {
 }
 function updateNumber(id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberRecord.update({
+        return yield prisma_1.default.numberRecord.update({
             where: { id },
             data,
             include: { posts: true },
@@ -218,13 +218,13 @@ function updateNumber(id, data) {
 }
 function deleteNumber(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield database_1.default.numberPost.deleteMany({ where: { number_id: id } });
-        yield database_1.default.numberRecord.delete({ where: { id } });
+        yield prisma_1.default.numberPost.deleteMany({ where: { number_id: id } });
+        yield prisma_1.default.numberRecord.delete({ where: { id } });
     });
 }
 function createPost(post) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.create({
+        return yield prisma_1.default.numberPost.create({
             data: post,
             include: { number: true },
         });
@@ -237,7 +237,7 @@ function getPost(id) {
 }
 function getPostById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.findUnique({
+        return yield prisma_1.default.numberPost.findUnique({
             where: { id },
             include: { number: true },
         });
@@ -250,7 +250,7 @@ function getPosts(number_id) {
 }
 function getPostsByNumber(number_id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.findMany({
+        return yield prisma_1.default.numberPost.findMany({
             where: { number_id },
             include: { number: true },
         });
@@ -258,7 +258,7 @@ function getPostsByNumber(number_id) {
 }
 function updatePost(id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.update({
+        return yield prisma_1.default.numberPost.update({
             where: { id },
             data,
             include: { number: true },
@@ -267,12 +267,12 @@ function updatePost(id, data) {
 }
 function updatePosts(number_id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.updateMany({ where: { number_id }, data });
+        return yield prisma_1.default.numberPost.updateMany({ where: { number_id }, data });
     });
 }
 function deletePost(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.numberPost.delete({
+        return yield prisma_1.default.numberPost.delete({
             where: { id },
             include: { number: true },
         });
@@ -281,16 +281,16 @@ function deletePost(id) {
 function clearPosts(number_id) {
     return __awaiter(this, void 0, void 0, function* () {
         if (number_id === undefined)
-            return yield database_1.default.numberPost.deleteMany();
+            return yield prisma_1.default.numberPost.deleteMany();
         else
-            return yield database_1.default.numberPost.deleteMany({
+            return yield prisma_1.default.numberPost.deleteMany({
                 where: { number_id },
             });
     });
 }
 function createMeal(meal) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.meal.create({
+        return yield prisma_1.default.meal.create({
             data: Object.assign(Object.assign({}, meal), { dateModified: meal.dateModified
                     ? new Date(meal.dateModified)
                     : null, ingredients: { create: meal.ingredients } }),
@@ -300,7 +300,7 @@ function createMeal(meal) {
 }
 function getMealById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.meal.findUnique({
+        return yield prisma_1.default.meal.findUnique({
             where: { id },
             include: { ingredients: true },
         });
@@ -309,7 +309,7 @@ function getMealById(id) {
 function updateMeal(id, meal) {
     return __awaiter(this, void 0, void 0, function* () {
         const { ingredients } = meal, mealData = __rest(meal, ["ingredients"]);
-        return yield database_1.default.meal.update({
+        return yield prisma_1.default.meal.update({
             where: { id },
             data: Object.assign(Object.assign({}, mealData), { ingredients: ingredients
                     ? {
@@ -324,7 +324,7 @@ function updateMeal(id, meal) {
 function deleteMeal(id) {
     return __awaiter(this, void 0, void 0, function* () {
         yield clearIngredients(id);
-        return yield database_1.default.meal.delete({
+        return yield prisma_1.default.meal.delete({
             where: { id },
             include: { ingredients: true },
         });
@@ -332,7 +332,7 @@ function deleteMeal(id) {
 }
 function createIngredient(ingredient, mealId) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.create({
+        return yield prisma_1.default.ingredient.create({
             data: Object.assign(Object.assign({}, ingredient), { mealId }),
             include: { meal: true },
         });
@@ -345,7 +345,7 @@ function getIngredient(id) {
 }
 function getIngredientById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.findUnique({
+        return yield prisma_1.default.ingredient.findUnique({
             where: { id },
             include: { meal: true },
         });
@@ -358,12 +358,12 @@ function getIngredients(mealId) {
 }
 function getIngredientsByMealId(mealId) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.findMany({ where: { mealId } });
+        return yield prisma_1.default.ingredient.findMany({ where: { mealId } });
     });
 }
 function updateIngredient(id, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.update({
+        return yield prisma_1.default.ingredient.update({
             where: { id },
             data,
             include: { meal: true },
@@ -372,12 +372,12 @@ function updateIngredient(id, data) {
 }
 function updateIngredients(mealId, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.updateMany({ where: { mealId }, data });
+        return yield prisma_1.default.ingredient.updateMany({ where: { mealId }, data });
     });
 }
 function deleteIngredient(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield database_1.default.ingredient.delete({
+        return yield prisma_1.default.ingredient.delete({
             where: { id },
             include: { meal: true },
         });
@@ -386,9 +386,9 @@ function deleteIngredient(id) {
 function clearIngredients(mealId) {
     return __awaiter(this, void 0, void 0, function* () {
         if (mealId === undefined)
-            return yield database_1.default.ingredient.deleteMany();
+            return yield prisma_1.default.ingredient.deleteMany();
         else
-            return yield database_1.default.ingredient.deleteMany({
+            return yield prisma_1.default.ingredient.deleteMany({
                 where: { mealId },
             });
     });
