@@ -17,14 +17,27 @@ enum UserRole {
 model UserMetadata {
   uid String @id
   role UserRole @default(client)
-  data Json
+  data Json @default("{}")
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+  name String
+  description String @default("")
+  images String[] @default([])
+  link String
+  metadata Json @default("{}")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
 }
 
 model Service {
   id Int @id @default(autoincrement())
   name String
   description String @default("")
+  images String[] @default([])
   hasDemo Boolean @default(true)
+  freeDemo Boolean @default(false)
   price Int
   other_prices Int[] @default([])
   metadata Json @default("{}")
@@ -36,6 +49,7 @@ model Testimonial {
   id Int @id @default(autoincrement())
   uid String
   comment String
+  metadata Json @default("{}")
   rating Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt @default(now())
