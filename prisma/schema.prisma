@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src"
+  output   = "./."
 }
 
 datasource db {
@@ -15,114 +15,114 @@ enum UserRole {
 }
 
 model UserMetadata {
-  uid String @id
+  uid  String   @id
   role UserRole @default(client)
-  data Json @default("{}")
+  data Json     @default("{}")
 }
 
 model Project {
-  id Int @id @default(autoincrement())
-  name String
-  description String @default("")
-  images String[] @default([])
-  link String
-  metadata Json @default("{}")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @default("")
+  images      String[] @default([])
+  link        String
+  metadata    Json     @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 }
 
 model Service {
-  id Int @id @default(autoincrement())
-  name String
-  description String @default("")
-  images String[] @default([])
-  hasDemo Boolean @default(true)
-  freeDemo Boolean @default(false)
-  price Int
-  other_prices Int[] @default([])
-  metadata Json @default("{}")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String   @default("")
+  images       String[] @default([])
+  hasDemo      Boolean  @default(true)
+  freeDemo     Boolean  @default(false)
+  price        Int
+  other_prices Int[]    @default([])
+  metadata     Json     @default("{}")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
 }
 
 model Testimonial {
-  id Int @id @default(autoincrement())
-  uid String
-  comment String
-  metadata Json @default("{}")
-  rating Int
+  id        Int      @id @default(autoincrement())
+  uid       String
+  comment   String
+  metadata  Json     @default("{}")
+  rating    Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Scheduler {
-  id String @id
+  id           String @id
   detailedName String
-  author String @default("system:unkown")
+  author       String @default("system:unkown")
 
   schedules Schedule[]
 }
 
 model Schedule {
-  id Int @id @default(autoincrement())
-  schedulerId String
+  id           Int      @id @default(autoincrement())
+  schedulerId  String
   creationTime DateTime @default(now())
-  toPostAt DateTime
-  posted Boolean @default(false)
-  webhook String?
-  content String
-  details Json @default("{}")
+  toPostAt     DateTime
+  posted       Boolean  @default(false)
+  webhook      String?
+  content      String
+  details      Json     @default("{}")
 
   scheduler Scheduler @relation(fields: [schedulerId], references: [id])
 }
 
 model Meal {
-  id String @id
-  name String
-  category String
-  area String
-  instructions String
-  thumbnail String
-  tags String[]
-  youtube String
-  ingredients Ingredient[]
-  source String
-  imageSource String?
+  id                       String       @id
+  name                     String
+  category                 String
+  area                     String
+  instructions             String
+  thumbnail                String
+  tags                     String[]
+  youtube                  String
+  ingredients              Ingredient[]
+  source                   String
+  imageSource              String?
   creativeCommonsConfirmed String?
-  dateModified DateTime?
+  dateModified             DateTime?
 }
 
 model Ingredient {
-  id Int @id @default(autoincrement())
-  mealId String @map("meal_id")
-  meal Meal @relation(fields: [mealId], references: [id])
+  id         Int    @id @default(autoincrement())
+  mealId     String @map("meal_id")
+  meal       Meal   @relation(fields: [mealId], references: [id])
   ingredient String
-  measure String
+  measure    String
 }
 
 model NumberPost {
-  id Int @id @default(autoincrement())
-  number_id String 
-  number NumberRecord @relation(fields: [number_id], references: [id], name: "NumberPosted")
-  time DateTime @default(now())
-  post_type String
+  id             Int          @id @default(autoincrement())
+  number_id      String
+  number         NumberRecord @relation(fields: [number_id], references: [id], name: "NumberPosted")
+  time           DateTime     @default(now())
+  post_type      String
   destination_id String
-  sender_id String
-  content Json @default("{}")
+  sender_id      String
+  content        Json         @default("{}")
 }
 
 model NumberRecord {
-  id String @id
-  source String
-  keywords String[]
-  saved_as String?
-  reason String?
+  id                  String       @id
+  source              String
+  keywords            String[]
+  saved_as            String?
+  reason              String?
   discussionFrequency Int?
-  posts NumberPost[] @relation("NumberPosted")
+  posts               NumberPost[] @relation("NumberPosted")
 }
 
 model CodeBlueprint {
-  id Int @id @default(autoincrement())
-  code String
-  metadata Json @default("{}")
+  id       Int    @id @default(autoincrement())
+  code     String
+  metadata Json   @default("{}")
 }

@@ -1,5 +1,5 @@
-import { JsonValue } from './src/runtime/library';
-import { UserRole } from './src';
+import { JsonValue } from './prisma/runtime/library';
+import { UserRole } from '.';
 
 export interface UserMetadataFromDB<T = JsonValue> {
     uid: string;
