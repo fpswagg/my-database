@@ -13,11 +13,35 @@ export interface UserMetadata {
     data: Record<string, any>;
 }
 
+export interface ProjectFromDB<T = JsonValue> {
+    id: number;
+    name: string;
+    description: string;
+    images: string[];
+    link: string;
+    metadata: T;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface Project {
+    id: number;
+    name: string;
+    description: string;
+    images: string[];
+    link: string;
+    metadata: Record<string, any>;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export interface ServiceFromDB<T = JsonValue> {
     id: number;
     name: string;
     description: string;
+    images: string[];
     hasDemo: boolean;
+    freeDemo: boolean;
     price: number;
     other_prices: number[];
     metadata: T;
@@ -29,10 +53,22 @@ export interface Service {
     id: number;
     name: string;
     description: string;
+    images: string[];
     hasDemo: boolean;
+    freeDemo: boolean;
     price: number;
     other_prices: number[];
     metadata: Record<string, any>;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface TestimonialFromDB<T = JsonValue> {
+    id: number;
+    uid: string;
+    comment: string;
+    metadata: T;
+    rating: number;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -41,6 +77,7 @@ export interface Testimonial {
     id: number;
     uid: string;
     comment: string;
+    metadata: Record<string, any>;
     rating: number;
     createdAt: Date;
     updatedAt: Date;
