@@ -1,74 +1,71 @@
 import { JsonValue } from './prisma/runtime/library';
-import { UserRole } from '.';
 
-export interface UserMetadataFromDB<T = JsonValue> {
-    uid: string;
-    role: UserRole;
-    data: T;
-}
+export type LocalizedString = {
+    [locale: string]: string;
+};
+
+export type UserRole = 'admin' | 'partner' | 'client';
 
 export interface UserMetadata {
     uid: string;
     role: UserRole;
     data: Record<string, any>;
+    createdAt: Date | string;
 }
 
-export interface ProjectFromDB<T = JsonValue> {
-    id: number;
-    name: string;
-    description: string;
-    images: string[];
-    link: string;
-    metadata: T;
-    createdAt: Date;
-    updatedAt: Date;
+export interface UserMetadataFromDB<T = JsonValue> {
+    uid: string;
+    role: UserRole;
+    data: T;
+    createdAt: Date | string;
 }
 
 export interface Project {
-    id: number;
-    name: string;
-    description: string;
+    id: string;
+    name: LocalizedString;
+    description: LocalizedString;
     images: string[];
     link: string;
     metadata: Record<string, any>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date | string;
+    updatedAt: Date | string;
 }
 
-export interface ServiceFromDB<T = JsonValue> {
-    id: number;
-    name: string;
-    description: string;
+export interface ProjectFromDB<L = JsonValue, T = JsonValue> {
+    id: string;
+    name: L;
+    description: L;
     images: string[];
-    hasDemo: boolean;
-    freeDemo: boolean;
-    price: number;
-    other_prices: number[];
-    metadata: T;
+    link: string;
+    metadata: Record<string, T>;
     createdAt: Date;
     updatedAt: Date;
 }
 
 export interface Service {
-    id: number;
-    name: string;
-    description: string;
+    id: string;
+    name: LocalizedString;
+    description: LocalizedString;
     images: string[];
     hasDemo: boolean;
     freeDemo: boolean;
     price: number;
-    other_prices: number[];
+    otherPrices: number[];
     metadata: Record<string, any>;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: Date | string;
+    updatedAt: Date | string;
 }
 
-export interface TestimonialFromDB<T = JsonValue> {
-    id: number;
-    uid: string;
-    comment: string;
+export interface ServiceFromDB<L = JsonValue, T = JsonValue> {
+    id: string;
+    name: L;
+    description: L;
+    images: string[];
+    hasDemo: boolean;
+    freeDemo: boolean;
+    price: number;
+    otherPrices: number[];
     metadata: T;
-    rating: number;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -76,8 +73,18 @@ export interface TestimonialFromDB<T = JsonValue> {
 export interface Testimonial {
     id: number;
     uid: string;
-    comment: string;
+    comment: LocalizedString;
     metadata: Record<string, any>;
+    rating: number;
+    createdAt: Date | string;
+    updatedAt: Date | string;
+}
+
+export interface TestimonialFromDB<L = JsonValue, T = JsonValue> {
+    id: number;
+    uid: string;
+    comment: L;
+    metadata: T;
     rating: number;
     createdAt: Date;
     updatedAt: Date;
