@@ -15,44 +15,45 @@ enum UserRole {
 }
 
 model UserMetadata {
-  uid  String   @id
-  role UserRole @default(client)
-  data Json     @default("{}")
+  uid       String   @id
+  role      UserRole @default(client)
+  data      Json     @default("{}")
+  createdAt DateTime @default(now())
 }
 
 model Project {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String   @default("")
+  id          String   @id @default(uuid())
+  name        Json
+  description Json
   images      String[] @default([])
   link        String
   metadata    Json     @default("{}")
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now()) @updatedAt
+  updatedAt   DateTime @updatedAt
 }
 
 model Service {
-  id           Int      @id @default(autoincrement())
-  name         String
-  description  String   @default("")
-  images       String[] @default([])
-  hasDemo      Boolean  @default(true)
-  freeDemo     Boolean  @default(false)
-  price        Int
-  other_prices Int[]    @default([])
-  metadata     Json     @default("{}")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now()) @updatedAt
+  id          String   @id @default(uuid())
+  name        Json
+  description Json
+  images      String[] @default([])
+  hasDemo     Boolean  @default(true)
+  freeDemo    Boolean  @default(false)
+  price       Int
+  otherPrices Int[]    @default([])
+  metadata    Json     @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Testimonial {
   id        Int      @id @default(autoincrement())
   uid       String
-  comment   String
-  metadata  Json     @default("{}")
+  comment   Json
+  metadata  Json
   rating    Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  updatedAt DateTime @updatedAt
 }
 
 model Scheduler {

@@ -379,8 +379,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -1902,17 +1902,20 @@ export namespace Prisma {
   export type UserMetadataMinAggregateOutputType = {
     uid: string | null
     role: $Enums.UserRole | null
+    createdAt: Date | null
   }
 
   export type UserMetadataMaxAggregateOutputType = {
     uid: string | null
     role: $Enums.UserRole | null
+    createdAt: Date | null
   }
 
   export type UserMetadataCountAggregateOutputType = {
     uid: number
     role: number
     data: number
+    createdAt: number
     _all: number
   }
 
@@ -1920,17 +1923,20 @@ export namespace Prisma {
   export type UserMetadataMinAggregateInputType = {
     uid?: true
     role?: true
+    createdAt?: true
   }
 
   export type UserMetadataMaxAggregateInputType = {
     uid?: true
     role?: true
+    createdAt?: true
   }
 
   export type UserMetadataCountAggregateInputType = {
     uid?: true
     role?: true
     data?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -2010,6 +2016,7 @@ export namespace Prisma {
     uid: string
     role: $Enums.UserRole
     data: JsonValue
+    createdAt: Date
     _count: UserMetadataCountAggregateOutputType | null
     _min: UserMetadataMinAggregateOutputType | null
     _max: UserMetadataMaxAggregateOutputType | null
@@ -2033,27 +2040,31 @@ export namespace Prisma {
     uid?: boolean
     role?: boolean
     data?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["userMetadata"]>
 
   export type UserMetadataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     uid?: boolean
     role?: boolean
     data?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["userMetadata"]>
 
   export type UserMetadataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     uid?: boolean
     role?: boolean
     data?: boolean
+    createdAt?: boolean
   }, ExtArgs["result"]["userMetadata"]>
 
   export type UserMetadataSelectScalar = {
     uid?: boolean
     role?: boolean
     data?: boolean
+    createdAt?: boolean
   }
 
-  export type UserMetadataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "role" | "data", ExtArgs["result"]["userMetadata"]>
+  export type UserMetadataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"uid" | "role" | "data" | "createdAt", ExtArgs["result"]["userMetadata"]>
 
   export type $UserMetadataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserMetadata"
@@ -2062,6 +2073,7 @@ export namespace Prisma {
       uid: string
       role: $Enums.UserRole
       data: Prisma.JsonValue
+      createdAt: Date
     }, ExtArgs["result"]["userMetadata"]>
     composites: {}
   }
@@ -2488,6 +2500,7 @@ export namespace Prisma {
     readonly uid: FieldRef<"UserMetadata", 'String'>
     readonly role: FieldRef<"UserMetadata", 'UserRole'>
     readonly data: FieldRef<"UserMetadata", 'Json'>
+    readonly createdAt: FieldRef<"UserMetadata", 'DateTime'>
   }
     
 
@@ -2860,33 +2873,19 @@ export namespace Prisma {
 
   export type AggregateProject = {
     _count: ProjectCountAggregateOutputType | null
-    _avg: ProjectAvgAggregateOutputType | null
-    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
   }
 
-  export type ProjectAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ProjectSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type ProjectMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    description: string | null
+    id: string | null
     link: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type ProjectMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    description: string | null
+    id: string | null
     link: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2905,18 +2904,8 @@ export namespace Prisma {
   }
 
 
-  export type ProjectAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ProjectSumAggregateInputType = {
-    id?: true
-  }
-
   export type ProjectMinAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
     link?: true
     createdAt?: true
     updatedAt?: true
@@ -2924,8 +2913,6 @@ export namespace Prisma {
 
   export type ProjectMaxAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
     link?: true
     createdAt?: true
     updatedAt?: true
@@ -2981,18 +2968,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ProjectAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProjectSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProjectMinAggregateInputType
@@ -3023,24 +2998,20 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProjectCountAggregateInputType | true
-    _avg?: ProjectAvgAggregateInputType
-    _sum?: ProjectSumAggregateInputType
     _min?: ProjectMinAggregateInputType
     _max?: ProjectMaxAggregateInputType
   }
 
   export type ProjectGroupByOutputType = {
-    id: number
-    name: string
-    description: string
+    id: string
+    name: JsonValue
+    description: JsonValue
     images: string[]
     link: string
     metadata: JsonValue
     createdAt: Date
     updatedAt: Date
     _count: ProjectCountAggregateOutputType | null
-    _avg: ProjectAvgAggregateOutputType | null
-    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
   }
@@ -3109,9 +3080,9 @@ export namespace Prisma {
     name: "Project"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      description: string
+      id: string
+      name: Prisma.JsonValue
+      description: Prisma.JsonValue
       images: string[]
       link: string
       metadata: Prisma.JsonValue
@@ -3540,9 +3511,9 @@ export namespace Prisma {
    * Fields of the Project model
    */
   interface ProjectFieldRefs {
-    readonly id: FieldRef<"Project", 'Int'>
-    readonly name: FieldRef<"Project", 'String'>
-    readonly description: FieldRef<"Project", 'String'>
+    readonly id: FieldRef<"Project", 'String'>
+    readonly name: FieldRef<"Project", 'Json'>
+    readonly description: FieldRef<"Project", 'Json'>
     readonly images: FieldRef<"Project", 'String[]'>
     readonly link: FieldRef<"Project", 'String'>
     readonly metadata: FieldRef<"Project", 'Json'>
@@ -3927,21 +3898,17 @@ export namespace Prisma {
   }
 
   export type ServiceAvgAggregateOutputType = {
-    id: number | null
     price: number | null
-    other_prices: number | null
+    otherPrices: number | null
   }
 
   export type ServiceSumAggregateOutputType = {
-    id: number | null
     price: number | null
-    other_prices: number[]
+    otherPrices: number[]
   }
 
   export type ServiceMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    description: string | null
+    id: string | null
     hasDemo: boolean | null
     freeDemo: boolean | null
     price: number | null
@@ -3950,9 +3917,7 @@ export namespace Prisma {
   }
 
   export type ServiceMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    description: string | null
+    id: string | null
     hasDemo: boolean | null
     freeDemo: boolean | null
     price: number | null
@@ -3968,7 +3933,7 @@ export namespace Prisma {
     hasDemo: number
     freeDemo: number
     price: number
-    other_prices: number
+    otherPrices: number
     metadata: number
     createdAt: number
     updatedAt: number
@@ -3977,21 +3942,17 @@ export namespace Prisma {
 
 
   export type ServiceAvgAggregateInputType = {
-    id?: true
     price?: true
-    other_prices?: true
+    otherPrices?: true
   }
 
   export type ServiceSumAggregateInputType = {
-    id?: true
     price?: true
-    other_prices?: true
+    otherPrices?: true
   }
 
   export type ServiceMinAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
     hasDemo?: true
     freeDemo?: true
     price?: true
@@ -4001,8 +3962,6 @@ export namespace Prisma {
 
   export type ServiceMaxAggregateInputType = {
     id?: true
-    name?: true
-    description?: true
     hasDemo?: true
     freeDemo?: true
     price?: true
@@ -4018,7 +3977,7 @@ export namespace Prisma {
     hasDemo?: true
     freeDemo?: true
     price?: true
-    other_prices?: true
+    otherPrices?: true
     metadata?: true
     createdAt?: true
     updatedAt?: true
@@ -4112,14 +4071,14 @@ export namespace Prisma {
   }
 
   export type ServiceGroupByOutputType = {
-    id: number
-    name: string
-    description: string
+    id: string
+    name: JsonValue
+    description: JsonValue
     images: string[]
     hasDemo: boolean
     freeDemo: boolean
     price: number
-    other_prices: number[]
+    otherPrices: number[]
     metadata: JsonValue
     createdAt: Date
     updatedAt: Date
@@ -4152,7 +4111,7 @@ export namespace Prisma {
     hasDemo?: boolean
     freeDemo?: boolean
     price?: boolean
-    other_prices?: boolean
+    otherPrices?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4166,7 +4125,7 @@ export namespace Prisma {
     hasDemo?: boolean
     freeDemo?: boolean
     price?: boolean
-    other_prices?: boolean
+    otherPrices?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4180,7 +4139,7 @@ export namespace Prisma {
     hasDemo?: boolean
     freeDemo?: boolean
     price?: boolean
-    other_prices?: boolean
+    otherPrices?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4194,26 +4153,26 @@ export namespace Prisma {
     hasDemo?: boolean
     freeDemo?: boolean
     price?: boolean
-    other_prices?: boolean
+    otherPrices?: boolean
     metadata?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "images" | "hasDemo" | "freeDemo" | "price" | "other_prices" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
+  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "images" | "hasDemo" | "freeDemo" | "price" | "otherPrices" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
 
   export type $ServicePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Service"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      description: string
+      id: string
+      name: Prisma.JsonValue
+      description: Prisma.JsonValue
       images: string[]
       hasDemo: boolean
       freeDemo: boolean
       price: number
-      other_prices: number[]
+      otherPrices: number[]
       metadata: Prisma.JsonValue
       createdAt: Date
       updatedAt: Date
@@ -4640,14 +4599,14 @@ export namespace Prisma {
    * Fields of the Service model
    */
   interface ServiceFieldRefs {
-    readonly id: FieldRef<"Service", 'Int'>
-    readonly name: FieldRef<"Service", 'String'>
-    readonly description: FieldRef<"Service", 'String'>
+    readonly id: FieldRef<"Service", 'String'>
+    readonly name: FieldRef<"Service", 'Json'>
+    readonly description: FieldRef<"Service", 'Json'>
     readonly images: FieldRef<"Service", 'String[]'>
     readonly hasDemo: FieldRef<"Service", 'Boolean'>
     readonly freeDemo: FieldRef<"Service", 'Boolean'>
     readonly price: FieldRef<"Service", 'Int'>
-    readonly other_prices: FieldRef<"Service", 'Int[]'>
+    readonly otherPrices: FieldRef<"Service", 'Int[]'>
     readonly metadata: FieldRef<"Service", 'Json'>
     readonly createdAt: FieldRef<"Service", 'DateTime'>
     readonly updatedAt: FieldRef<"Service", 'DateTime'>
@@ -5042,7 +5001,6 @@ export namespace Prisma {
   export type TestimonialMinAggregateOutputType = {
     id: number | null
     uid: string | null
-    comment: string | null
     rating: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5051,7 +5009,6 @@ export namespace Prisma {
   export type TestimonialMaxAggregateOutputType = {
     id: number | null
     uid: string | null
-    comment: string | null
     rating: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5082,7 +5039,6 @@ export namespace Prisma {
   export type TestimonialMinAggregateInputType = {
     id?: true
     uid?: true
-    comment?: true
     rating?: true
     createdAt?: true
     updatedAt?: true
@@ -5091,7 +5047,6 @@ export namespace Prisma {
   export type TestimonialMaxAggregateInputType = {
     id?: true
     uid?: true
-    comment?: true
     rating?: true
     createdAt?: true
     updatedAt?: true
@@ -5197,7 +5152,7 @@ export namespace Prisma {
   export type TestimonialGroupByOutputType = {
     id: number
     uid: string
-    comment: string
+    comment: JsonValue
     metadata: JsonValue
     rating: number
     createdAt: Date
@@ -5271,7 +5226,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       uid: string
-      comment: string
+      comment: Prisma.JsonValue
       metadata: Prisma.JsonValue
       rating: number
       createdAt: Date
@@ -5701,7 +5656,7 @@ export namespace Prisma {
   interface TestimonialFieldRefs {
     readonly id: FieldRef<"Testimonial", 'Int'>
     readonly uid: FieldRef<"Testimonial", 'String'>
-    readonly comment: FieldRef<"Testimonial", 'String'>
+    readonly comment: FieldRef<"Testimonial", 'Json'>
     readonly metadata: FieldRef<"Testimonial", 'Json'>
     readonly rating: FieldRef<"Testimonial", 'Int'>
     readonly createdAt: FieldRef<"Testimonial", 'DateTime'>
@@ -13722,7 +13677,8 @@ export namespace Prisma {
   export const UserMetadataScalarFieldEnum: {
     uid: 'uid',
     role: 'role',
-    data: 'data'
+    data: 'data',
+    createdAt: 'createdAt'
   };
 
   export type UserMetadataScalarFieldEnum = (typeof UserMetadataScalarFieldEnum)[keyof typeof UserMetadataScalarFieldEnum]
@@ -13750,7 +13706,7 @@ export namespace Prisma {
     hasDemo: 'hasDemo',
     freeDemo: 'freeDemo',
     price: 'price',
-    other_prices: 'other_prices',
+    otherPrices: 'otherPrices',
     metadata: 'metadata',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -13945,20 +13901,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -13976,6 +13918,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -14003,12 +13959,14 @@ export namespace Prisma {
     uid?: StringFilter<"UserMetadata"> | string
     role?: EnumUserRoleFilter<"UserMetadata"> | $Enums.UserRole
     data?: JsonFilter<"UserMetadata">
+    createdAt?: DateTimeFilter<"UserMetadata"> | Date | string
   }
 
   export type UserMetadataOrderByWithRelationInput = {
     uid?: SortOrder
     role?: SortOrder
     data?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserMetadataWhereUniqueInput = Prisma.AtLeast<{
@@ -14018,12 +13976,14 @@ export namespace Prisma {
     NOT?: UserMetadataWhereInput | UserMetadataWhereInput[]
     role?: EnumUserRoleFilter<"UserMetadata"> | $Enums.UserRole
     data?: JsonFilter<"UserMetadata">
+    createdAt?: DateTimeFilter<"UserMetadata"> | Date | string
   }, "uid">
 
   export type UserMetadataOrderByWithAggregationInput = {
     uid?: SortOrder
     role?: SortOrder
     data?: SortOrder
+    createdAt?: SortOrder
     _count?: UserMetadataCountOrderByAggregateInput
     _max?: UserMetadataMaxOrderByAggregateInput
     _min?: UserMetadataMinOrderByAggregateInput
@@ -14036,15 +13996,16 @@ export namespace Prisma {
     uid?: StringWithAggregatesFilter<"UserMetadata"> | string
     role?: EnumUserRoleWithAggregatesFilter<"UserMetadata"> | $Enums.UserRole
     data?: JsonWithAggregatesFilter<"UserMetadata">
+    createdAt?: DateTimeWithAggregatesFilter<"UserMetadata"> | Date | string
   }
 
   export type ProjectWhereInput = {
     AND?: ProjectWhereInput | ProjectWhereInput[]
     OR?: ProjectWhereInput[]
     NOT?: ProjectWhereInput | ProjectWhereInput[]
-    id?: IntFilter<"Project"> | number
-    name?: StringFilter<"Project"> | string
-    description?: StringFilter<"Project"> | string
+    id?: StringFilter<"Project"> | string
+    name?: JsonFilter<"Project">
+    description?: JsonFilter<"Project">
     images?: StringNullableListFilter<"Project">
     link?: StringFilter<"Project"> | string
     metadata?: JsonFilter<"Project">
@@ -14064,12 +14025,12 @@ export namespace Prisma {
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: ProjectWhereInput | ProjectWhereInput[]
     OR?: ProjectWhereInput[]
     NOT?: ProjectWhereInput | ProjectWhereInput[]
-    name?: StringFilter<"Project"> | string
-    description?: StringFilter<"Project"> | string
+    name?: JsonFilter<"Project">
+    description?: JsonFilter<"Project">
     images?: StringNullableListFilter<"Project">
     link?: StringFilter<"Project"> | string
     metadata?: JsonFilter<"Project">
@@ -14087,19 +14048,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
-    _avg?: ProjectAvgOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
-    _sum?: ProjectSumOrderByAggregateInput
   }
 
   export type ProjectScalarWhereWithAggregatesInput = {
     AND?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
     OR?: ProjectScalarWhereWithAggregatesInput[]
     NOT?: ProjectScalarWhereWithAggregatesInput | ProjectScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Project"> | number
-    name?: StringWithAggregatesFilter<"Project"> | string
-    description?: StringWithAggregatesFilter<"Project"> | string
+    id?: StringWithAggregatesFilter<"Project"> | string
+    name?: JsonWithAggregatesFilter<"Project">
+    description?: JsonWithAggregatesFilter<"Project">
     images?: StringNullableListFilter<"Project">
     link?: StringWithAggregatesFilter<"Project"> | string
     metadata?: JsonWithAggregatesFilter<"Project">
@@ -14111,14 +14070,14 @@ export namespace Prisma {
     AND?: ServiceWhereInput | ServiceWhereInput[]
     OR?: ServiceWhereInput[]
     NOT?: ServiceWhereInput | ServiceWhereInput[]
-    id?: IntFilter<"Service"> | number
-    name?: StringFilter<"Service"> | string
-    description?: StringFilter<"Service"> | string
+    id?: StringFilter<"Service"> | string
+    name?: JsonFilter<"Service">
+    description?: JsonFilter<"Service">
     images?: StringNullableListFilter<"Service">
     hasDemo?: BoolFilter<"Service"> | boolean
     freeDemo?: BoolFilter<"Service"> | boolean
     price?: IntFilter<"Service"> | number
-    other_prices?: IntNullableListFilter<"Service">
+    otherPrices?: IntNullableListFilter<"Service">
     metadata?: JsonFilter<"Service">
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
@@ -14132,24 +14091,24 @@ export namespace Prisma {
     hasDemo?: SortOrder
     freeDemo?: SortOrder
     price?: SortOrder
-    other_prices?: SortOrder
+    otherPrices?: SortOrder
     metadata?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ServiceWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: ServiceWhereInput | ServiceWhereInput[]
     OR?: ServiceWhereInput[]
     NOT?: ServiceWhereInput | ServiceWhereInput[]
-    name?: StringFilter<"Service"> | string
-    description?: StringFilter<"Service"> | string
+    name?: JsonFilter<"Service">
+    description?: JsonFilter<"Service">
     images?: StringNullableListFilter<"Service">
     hasDemo?: BoolFilter<"Service"> | boolean
     freeDemo?: BoolFilter<"Service"> | boolean
     price?: IntFilter<"Service"> | number
-    other_prices?: IntNullableListFilter<"Service">
+    otherPrices?: IntNullableListFilter<"Service">
     metadata?: JsonFilter<"Service">
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
@@ -14163,7 +14122,7 @@ export namespace Prisma {
     hasDemo?: SortOrder
     freeDemo?: SortOrder
     price?: SortOrder
-    other_prices?: SortOrder
+    otherPrices?: SortOrder
     metadata?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14178,14 +14137,14 @@ export namespace Prisma {
     AND?: ServiceScalarWhereWithAggregatesInput | ServiceScalarWhereWithAggregatesInput[]
     OR?: ServiceScalarWhereWithAggregatesInput[]
     NOT?: ServiceScalarWhereWithAggregatesInput | ServiceScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Service"> | number
-    name?: StringWithAggregatesFilter<"Service"> | string
-    description?: StringWithAggregatesFilter<"Service"> | string
+    id?: StringWithAggregatesFilter<"Service"> | string
+    name?: JsonWithAggregatesFilter<"Service">
+    description?: JsonWithAggregatesFilter<"Service">
     images?: StringNullableListFilter<"Service">
     hasDemo?: BoolWithAggregatesFilter<"Service"> | boolean
     freeDemo?: BoolWithAggregatesFilter<"Service"> | boolean
     price?: IntWithAggregatesFilter<"Service"> | number
-    other_prices?: IntNullableListFilter<"Service">
+    otherPrices?: IntNullableListFilter<"Service">
     metadata?: JsonWithAggregatesFilter<"Service">
     createdAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
@@ -14197,7 +14156,7 @@ export namespace Prisma {
     NOT?: TestimonialWhereInput | TestimonialWhereInput[]
     id?: IntFilter<"Testimonial"> | number
     uid?: StringFilter<"Testimonial"> | string
-    comment?: StringFilter<"Testimonial"> | string
+    comment?: JsonFilter<"Testimonial">
     metadata?: JsonFilter<"Testimonial">
     rating?: IntFilter<"Testimonial"> | number
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
@@ -14220,7 +14179,7 @@ export namespace Prisma {
     OR?: TestimonialWhereInput[]
     NOT?: TestimonialWhereInput | TestimonialWhereInput[]
     uid?: StringFilter<"Testimonial"> | string
-    comment?: StringFilter<"Testimonial"> | string
+    comment?: JsonFilter<"Testimonial">
     metadata?: JsonFilter<"Testimonial">
     rating?: IntFilter<"Testimonial"> | number
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
@@ -14248,7 +14207,7 @@ export namespace Prisma {
     NOT?: TestimonialScalarWhereWithAggregatesInput | TestimonialScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Testimonial"> | number
     uid?: StringWithAggregatesFilter<"Testimonial"> | string
-    comment?: StringWithAggregatesFilter<"Testimonial"> | string
+    comment?: JsonWithAggregatesFilter<"Testimonial">
     metadata?: JsonWithAggregatesFilter<"Testimonial">
     rating?: IntWithAggregatesFilter<"Testimonial"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
@@ -14691,47 +14650,55 @@ export namespace Prisma {
     uid: string
     role?: $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type UserMetadataUncheckedCreateInput = {
     uid: string
     role?: $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type UserMetadataUpdateInput = {
     uid?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserMetadataUncheckedUpdateInput = {
     uid?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserMetadataCreateManyInput = {
     uid: string
     role?: $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type UserMetadataUpdateManyMutationInput = {
     uid?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserMetadataUncheckedUpdateManyInput = {
     uid?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     data?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectCreateInput = {
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ProjectCreateimagesInput | string[]
     link: string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14740,9 +14707,9 @@ export namespace Prisma {
   }
 
   export type ProjectUncheckedCreateInput = {
-    id?: number
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ProjectCreateimagesInput | string[]
     link: string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14751,8 +14718,9 @@ export namespace Prisma {
   }
 
   export type ProjectUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ProjectUpdateimagesInput | string[]
     link?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14761,9 +14729,9 @@ export namespace Prisma {
   }
 
   export type ProjectUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ProjectUpdateimagesInput | string[]
     link?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14772,9 +14740,9 @@ export namespace Prisma {
   }
 
   export type ProjectCreateManyInput = {
-    id?: number
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ProjectCreateimagesInput | string[]
     link: string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14783,8 +14751,9 @@ export namespace Prisma {
   }
 
   export type ProjectUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ProjectUpdateimagesInput | string[]
     link?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14793,9 +14762,9 @@ export namespace Prisma {
   }
 
   export type ProjectUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ProjectUpdateimagesInput | string[]
     link?: StringFieldUpdateOperationsInput | string
     metadata?: JsonNullValueInput | InputJsonValue
@@ -14804,95 +14773,98 @@ export namespace Prisma {
   }
 
   export type ServiceCreateInput = {
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ServiceCreateimagesInput | string[]
     hasDemo?: boolean
     freeDemo?: boolean
     price: number
-    other_prices?: ServiceCreateother_pricesInput | number[]
+    otherPrices?: ServiceCreateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ServiceUncheckedCreateInput = {
-    id?: number
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ServiceCreateimagesInput | string[]
     hasDemo?: boolean
     freeDemo?: boolean
     price: number
-    other_prices?: ServiceCreateother_pricesInput | number[]
+    otherPrices?: ServiceCreateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ServiceUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ServiceUpdateimagesInput | string[]
     hasDemo?: BoolFieldUpdateOperationsInput | boolean
     freeDemo?: BoolFieldUpdateOperationsInput | boolean
     price?: IntFieldUpdateOperationsInput | number
-    other_prices?: ServiceUpdateother_pricesInput | number[]
+    otherPrices?: ServiceUpdateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ServiceUpdateimagesInput | string[]
     hasDemo?: BoolFieldUpdateOperationsInput | boolean
     freeDemo?: BoolFieldUpdateOperationsInput | boolean
     price?: IntFieldUpdateOperationsInput | number
-    other_prices?: ServiceUpdateother_pricesInput | number[]
+    otherPrices?: ServiceUpdateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceCreateManyInput = {
-    id?: number
-    name: string
-    description?: string
+    id?: string
+    name: JsonNullValueInput | InputJsonValue
+    description: JsonNullValueInput | InputJsonValue
     images?: ServiceCreateimagesInput | string[]
     hasDemo?: boolean
     freeDemo?: boolean
     price: number
-    other_prices?: ServiceCreateother_pricesInput | number[]
+    otherPrices?: ServiceCreateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ServiceUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ServiceUpdateimagesInput | string[]
     hasDemo?: BoolFieldUpdateOperationsInput | boolean
     freeDemo?: BoolFieldUpdateOperationsInput | boolean
     price?: IntFieldUpdateOperationsInput | number
-    other_prices?: ServiceUpdateother_pricesInput | number[]
+    otherPrices?: ServiceUpdateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    name?: JsonNullValueInput | InputJsonValue
+    description?: JsonNullValueInput | InputJsonValue
     images?: ServiceUpdateimagesInput | string[]
     hasDemo?: BoolFieldUpdateOperationsInput | boolean
     freeDemo?: BoolFieldUpdateOperationsInput | boolean
     price?: IntFieldUpdateOperationsInput | number
-    other_prices?: ServiceUpdateother_pricesInput | number[]
+    otherPrices?: ServiceUpdateotherPricesInput | number[]
     metadata?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14900,8 +14872,8 @@ export namespace Prisma {
 
   export type TestimonialCreateInput = {
     uid: string
-    comment: string
-    metadata?: JsonNullValueInput | InputJsonValue
+    comment: JsonNullValueInput | InputJsonValue
+    metadata: JsonNullValueInput | InputJsonValue
     rating: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14910,8 +14882,8 @@ export namespace Prisma {
   export type TestimonialUncheckedCreateInput = {
     id?: number
     uid: string
-    comment: string
-    metadata?: JsonNullValueInput | InputJsonValue
+    comment: JsonNullValueInput | InputJsonValue
+    metadata: JsonNullValueInput | InputJsonValue
     rating: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14919,7 +14891,7 @@ export namespace Prisma {
 
   export type TestimonialUpdateInput = {
     uid?: StringFieldUpdateOperationsInput | string
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: JsonNullValueInput | InputJsonValue
     metadata?: JsonNullValueInput | InputJsonValue
     rating?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14929,7 +14901,7 @@ export namespace Prisma {
   export type TestimonialUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     uid?: StringFieldUpdateOperationsInput | string
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: JsonNullValueInput | InputJsonValue
     metadata?: JsonNullValueInput | InputJsonValue
     rating?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14939,8 +14911,8 @@ export namespace Prisma {
   export type TestimonialCreateManyInput = {
     id?: number
     uid: string
-    comment: string
-    metadata?: JsonNullValueInput | InputJsonValue
+    comment: JsonNullValueInput | InputJsonValue
+    metadata: JsonNullValueInput | InputJsonValue
     rating: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14948,7 +14920,7 @@ export namespace Prisma {
 
   export type TestimonialUpdateManyMutationInput = {
     uid?: StringFieldUpdateOperationsInput | string
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: JsonNullValueInput | InputJsonValue
     metadata?: JsonNullValueInput | InputJsonValue
     rating?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14958,7 +14930,7 @@ export namespace Prisma {
   export type TestimonialUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     uid?: StringFieldUpdateOperationsInput | string
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: JsonNullValueInput | InputJsonValue
     metadata?: JsonNullValueInput | InputJsonValue
     rating?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15455,20 +15427,34 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type UserMetadataCountOrderByAggregateInput = {
     uid?: SortOrder
     role?: SortOrder
     data?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserMetadataMaxOrderByAggregateInput = {
     uid?: SortOrder
     role?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type UserMetadataMinOrderByAggregateInput = {
     uid?: SortOrder
     role?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -15525,89 +15511,6 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type ProjectCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
-    images?: SortOrder
-    link?: SortOrder
-    metadata?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type ProjectAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ProjectMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
-    link?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type ProjectMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
-    link?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type ProjectSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -15622,9 +15525,53 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type ProjectCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    images?: SortOrder
+    link?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectMaxOrderByAggregateInput = {
+    id?: SortOrder
+    link?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProjectMinOrderByAggregateInput = {
+    id?: SortOrder
+    link?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type IntNullableListFilter<$PrismaModel = never> = {
@@ -15643,22 +15590,19 @@ export namespace Prisma {
     hasDemo?: SortOrder
     freeDemo?: SortOrder
     price?: SortOrder
-    other_prices?: SortOrder
+    otherPrices?: SortOrder
     metadata?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ServiceAvgOrderByAggregateInput = {
-    id?: SortOrder
     price?: SortOrder
-    other_prices?: SortOrder
+    otherPrices?: SortOrder
   }
 
   export type ServiceMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
     hasDemo?: SortOrder
     freeDemo?: SortOrder
     price?: SortOrder
@@ -15668,8 +15612,6 @@ export namespace Prisma {
 
   export type ServiceMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    description?: SortOrder
     hasDemo?: SortOrder
     freeDemo?: SortOrder
     price?: SortOrder
@@ -15678,9 +15620,8 @@ export namespace Prisma {
   }
 
   export type ServiceSumOrderByAggregateInput = {
-    id?: SortOrder
     price?: SortOrder
-    other_prices?: SortOrder
+    otherPrices?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -15689,6 +15630,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type TestimonialCountOrderByAggregateInput = {
@@ -15709,7 +15666,6 @@ export namespace Prisma {
   export type TestimonialMaxOrderByAggregateInput = {
     id?: SortOrder
     uid?: SortOrder
-    comment?: SortOrder
     rating?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15718,7 +15674,6 @@ export namespace Prisma {
   export type TestimonialMinOrderByAggregateInput = {
     id?: SortOrder
     uid?: SortOrder
-    comment?: SortOrder
     rating?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16094,6 +16049,10 @@ export namespace Prisma {
     set?: $Enums.UserRole
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type ProjectCreateimagesInput = {
     set: string[]
   }
@@ -16103,23 +16062,11 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type ServiceCreateimagesInput = {
     set: string[]
   }
 
-  export type ServiceCreateother_pricesInput = {
+  export type ServiceCreateotherPricesInput = {
     set: number[]
   }
 
@@ -16132,7 +16079,15 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type ServiceUpdateother_pricesInput = {
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ServiceUpdateotherPricesInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -16360,6 +16315,17 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -16421,7 +16387,7 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -16429,7 +16395,23 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -16457,33 +16439,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
