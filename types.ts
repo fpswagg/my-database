@@ -1,4 +1,4 @@
-import { JsonValue } from '@prisma/client/runtime/library';
+import { JsonValue } from './prisma/runtime/library';
 
 export type LocalizedString = {
     [locale: string]: string;

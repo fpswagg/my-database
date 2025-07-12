@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prisma = void 0;
-__exportStar(require("@prisma/client"), exports);
-const client_1 = require("@prisma/client");
-exports.prisma = new client_1.PrismaClient();
+__exportStar(require("./prisma"), exports);
+const prisma_1 = require("./prisma");
+exports.prisma = new prisma_1.PrismaClient();
 exports.default = exports.prisma;
